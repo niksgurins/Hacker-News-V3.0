@@ -1,11 +1,12 @@
 import React from 'react'
 
-import Story from '../components/Story/Story'
+import StoryList from '../components/StoryList/StoryList'
 
 const HomePage = () => {
     return (
         <div>
-            <Story 
+            <StoryList />
+            {/* <Story 
                 id={192327}
                 by="justin"
                 time={1210981217}
@@ -23,7 +24,7 @@ const HomePage = () => {
                 score={6}
                 descendants={12} 
             />
-            <Story />
+            <Story /> */}
         </div>
     )
 }

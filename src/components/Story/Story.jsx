@@ -20,7 +20,7 @@ const UpvoteDiv = styled.div`
     justify-content: center;
     align-items: center;
     color: #909198;
-    transition: color .15s ease-out;
+    transition: color .2s linear;
 
     p {
         font-size: 1.2rem;
@@ -38,15 +38,24 @@ const StoryHeading = styled.h3`
     margin: 0;
     text-align: left;
     color: #909198;
-    transition: color .15s ease-out;
+    transition: color .2s linear;
+
+    @media (max-width: 1007px) {
+        -webkit-box-orient: vertical;
+        display: block;
+        display: -webkit-box;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+    }
 
     a {
         color: #909198;
         text-decoration: none;
-    }
 
-    a:hover {
-        text-decoration: underline;
+        &:hover {
+            text-decoration: underline;
+        }
     }
 `
 
@@ -83,7 +92,7 @@ const StyledStory = styled.div`
     column-gap: 1.8rem;
     border-bottom: 1px solid #909198; 
     background: linear-gradient(-45deg, #2f3037 50%, #202226 50%) right;
-    background-size: 208%;
+    background-size: 215%;
     transition: .2s linear;
     
     &:hover {
@@ -92,6 +101,10 @@ const StyledStory = styled.div`
 
     &:hover ${StoryHeading}, &:hover ${StoryHeading} a, &:hover ${UpvoteDiv} {
         color: #FFF;
+    }
+
+    @media (max-width: 640px) {
+        background-size: 223%;
     }
 `
 
@@ -122,7 +135,7 @@ const Story = ({
 
     return (
         <StyledStory>
-            <StoryNumber>
+            <StoryNumber data-testid='storyNumber'>
                 <p>{number}</p>
             </StoryNumber>
             <UpvoteDiv data-testid='upvoteDiv'>
@@ -132,7 +145,7 @@ const Story = ({
             </UpvoteDiv>
             <StoryHeading data-testid='storyHeading'>{renderTitle()}</StoryHeading>
             <StoryDetailsDiv data-testid='storyDetailsDiv'>
-                <p>{'by '}<span>{by}</span> {` ${moment(new Date(time * 1000), 'YYYYMMDD').fromNow()}`}</p>
+                <p>{'by '}<span>{by}</span> {`${moment(new Date(time * 1000), 'YYYYMMDD').fromNow()}`}</p>
                 <CommentsDiv data-testid='comment'>
                     <p style={{"paddingRight": "0.5rem"}}>{descendants}</p>
                     <ChatLeftDotsFill size={20} />
@@ -143,6 +156,7 @@ const Story = ({
 }
 
 export {
+    StyledStory,
     StyledStorySkeleton
 }
 
